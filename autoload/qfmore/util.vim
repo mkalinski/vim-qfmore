@@ -13,7 +13,7 @@ endfunction
 function qfmore#util#from_systemlist(cmd) abort
     let l:listing = systemlist(a:cmd)
 
-    if v:shell_error
+    if v:shell_error && !empty(l:listing)
         echoerr join(l:listing, "\n")
         return []
     endif
