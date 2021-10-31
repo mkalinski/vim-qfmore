@@ -8,7 +8,8 @@ function s:getlist(
     endif
 
     if a:len_limit > 0
-        let l:listing = l:listing[: a:len_limit]
+        " a:len_limit - 1 because vimscript indices are 0-based, but inclusive
+        let l:listing = l:listing[: a:len_limit - 1]
     endif
 
     return l:listing
