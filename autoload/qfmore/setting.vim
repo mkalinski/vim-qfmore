@@ -1,6 +1,7 @@
 let s:DEFAULTS = {
 \   'qf_command_prefix': 'C',
 \   'loc_command_prefix': 'L',
+\   'source_recfiles_cmd': ['find', '.'],
 \}
 
 function qfmore#setting#get(name) abort
