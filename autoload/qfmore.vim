@@ -14,21 +14,19 @@ function s:getlist(
     return l:listing
 endfunction
 
-function qfmore#qf(
-\    source_name, len_limit = 0, filter_pattern = '', source_args = []
-\) abort
+function qfmore#qf(source_name, len_limit = 0, filter_pattern = '', ...) abort
     call setqflist(
-    \   s:getlist(a:source_name, a:len_limit, a:filter_pattern, a:source_args),
+    \   s:getlist(a:source_name, a:len_limit, a:filter_pattern, a:000),
     \)
     call setqflist([], 'r', {'title': a:source_name})
 endfunction
 
 function qfmore#loc(
-\    buf_nr, source_name, len_limit = 0, filter_pattern = '', source_args = []
+\    buf_nr, source_name, len_limit = 0, filter_pattern = '', ...
 \) abort
     call setloclist(
     \   a:buf_nr,
-    \   s:getlist(a:source_name, a:len_limit, a:filter_pattern, a:source_args),
+    \   s:getlist(a:source_name, a:len_limit, a:filter_pattern, a:000),
     \)
     call setloclist(a:buf_nr, [], 'r', {'title': a:source_name})
 endfunction
