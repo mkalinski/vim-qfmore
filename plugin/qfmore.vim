@@ -1,18 +1,14 @@
-if get(g:, 'qfmore_plugin_loaded', 0)
+if exists('s:do_once')
     finish
 endif
 
-let g:qfmore_plugin_loaded = 1
+let s:do_once = 1
 
-call qfmore#source#register(
-\   'OldFiles',
-\   function('qfmore#source#oldfiles#list'),
-\)
-call qfmore#source#register(
-\   'RecFiles',
-\   function('qfmore#source#recfiles#list'),
-\)
-call qfmore#source#register(
-\   'GitLs',
-\   function('qfmore#source#gitls#list'),
-\)
+function s:qfmore_setup() abort
+    for l:source_name in g:qfmore#enabled_builtin_sources
+        let l:func_name = printf('qfmore#sources#%s#execute', l:source_name)
+        call qfmore#create_command(l:source_name, l:func_name)
+    endfor
+endfunction
+
+call s:qfmore_setup()
